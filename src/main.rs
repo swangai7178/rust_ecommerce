@@ -7,7 +7,6 @@ use std::rc::Rc;
 use std::cell::RefCell;
 use yew_router::prelude::*;
 use yew::prelude::*;
-mod productview;
 
 #[derive(Clone, PartialEq)]
 struct Cart {
@@ -43,7 +42,7 @@ enum Route {
     #[at("/")]
     Home,
     #[at("/product/:id")]
-    ProductPageView { id: u32 },
+    ProductPage { id: u32 },
 }
 
 #[function_component(Home)]
@@ -79,7 +78,7 @@ fn home() -> Html {
                     </div>
                 </div>
             </header>
-            <div class="relative w-full py-12 flex flex-col items-center mt-16 text-white">
+            <div class="relative w-full py-12 flex flex-col items-center mt-16 ">
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://img.freepik.com/free-psd/black-friday-super-sale-web-banner-template_106176-1671.jpg'); filter: hue-rotate(180deg) brightness(0.7);"></div>
                     <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-psd/black-friday-super-sale-facebook-cover-template_106176-3157.jpg'); filter: hue-rotate(180deg) brightness(0.7);"></div>
@@ -105,7 +104,7 @@ fn home() -> Html {
                         <button class="mt-2 bg-green-500 text-white py-2 px-4 rounded-full" onclick={Callback::from({
                             let link = link.clone();
                             let id = product.id;
-                            move |_| link.push(&Route::ProductPageView { id })
+                            move |_| link.push(&Route::ProductPage { id })
                         })}>
                             {"View Product"}
                         </button>
@@ -157,7 +156,7 @@ fn app() -> Html {
 fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html! { <Home /> },
-        Route::ProductPageView { id } => html! { <ProductPage id={id} /> },
+        Route::ProductPage { id } => html! { <ProductPage id={id} /> },
     }
 }
 
