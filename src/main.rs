@@ -1,3 +1,7 @@
+/*
+ *   Copyright (c) 2025 
+ *   All rights reserved.
+ */
 
 use std::rc::Rc;
 use std::cell::RefCell;
@@ -30,6 +34,7 @@ struct Product {
     id: u32,
     name: String,
     image_url: String,
+    price: String,
 }
 
 #[derive(Routable, PartialEq, Clone, Debug)]
@@ -53,15 +58,15 @@ fn home() -> Html {
     };
 
     let products = use_state(|| vec![
-        Product { id: 1, name: "Product 1".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
-        Product { id: 2, name: "Product 2".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
+        Product { id: 1,price:"30".to_string(), name: "Product 1".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
+        Product { id: 2,price:"50".to_string(), name: "Product 2".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
         // Add more products as needed
     ]);
 
     html! {
-        <div class="flex flex-col items-center justify-start min-h-screen text-white">
+        <div class="flex flex-col items-center justify-start min-h-screen">
             <header class="w-full py-4 bg-gray-800 text-white flex justify-between items-center px-8 fixed top-0 z-50">
-                <h1 class="text-2xl font-bold">{"Our Shop"}</h1>
+                <h1 class="text-2xl font-bold text-white">{"Our Shop"}</h1>
                 <div class="relative">
                     <button class="bg-blue-500 text-white py-2 px-4 rounded-full">
                         {"Cart ("} {cart.get_items().len()} {")"}
@@ -73,7 +78,7 @@ fn home() -> Html {
                     </div>
                 </div>
             </header>
-            <div class="relative w-full py-12 flex flex-col items-center mt-16">
+            <div class="relative w-full py-12 flex flex-col items-center mt-16 text-white">
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://img.freepik.com/free-psd/black-friday-super-sale-web-banner-template_106176-1671.jpg'); filter: hue-rotate(180deg) brightness(0.7);"></div>
                     <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-psd/black-friday-super-sale-facebook-cover-template_106176-3157.jpg'); filter: hue-rotate(180deg) brightness(0.7);"></div>
@@ -89,7 +94,8 @@ fn home() -> Html {
                 { for products.iter().cloned().map(|product| html! {
                     <div>
                         <img src={product.image_url.clone()} alt={product.name.clone()} class="w-full h-48 object-cover rounded-lg" />
-                        <h2 class="text-xl font-bold mt-2">{ &product.name }</h2>
+                        <h2 >{ &product.name }</h2>
+                        <p>{&product.price}</p>
                         <button class="bg-blue-500 text-white py-2 px-4 rounded-full flex items-center mt-2" onclick={add_to_cart.reform(move |_| product.name.clone())}>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M16 11V9a4 4 0 10-8 0v2H5a1 1 0 000 2h1v5a2 2 0 002 2h4a2 2 0 002-2v-5h1a1 1 0 100-2h-1zm-6-2V9a2 2 0 114 0v2H10z" />
@@ -117,8 +123,8 @@ struct ProductPageProps {
 #[function_component(ProductPage)]
 fn product_page(props: &ProductPageProps) -> Html {
     let products = vec![
-        Product { id: 1, name: "Product 1".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
-        Product { id: 2, name: "Product 2".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
+        Product { id: 1, name: "Product 1".to_string(),price:"30".to_string() ,image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
+        Product { id: 2, name: "Product 2".to_string(), price:"30".to_string(),image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
         // Add more products as needed
     ];
 
