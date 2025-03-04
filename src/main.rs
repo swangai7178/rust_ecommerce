@@ -7,6 +7,7 @@ use std::rc::Rc;
 use std::cell::RefCell;
 use yew_router::prelude::*;
 use yew::prelude::*;
+mod productview;
 
 #[derive(Clone, PartialEq)]
 struct Cart {
@@ -42,7 +43,7 @@ enum Route {
     #[at("/")]
     Home,
     #[at("/product/:id")]
-    ProductPage { id: u32 },
+    ProductPageView { id: u32 },
 }
 
 #[function_component(Home)]
@@ -104,7 +105,7 @@ fn home() -> Html {
                         <button class="mt-2 bg-green-500 text-white py-2 px-4 rounded-full" onclick={Callback::from({
                             let link = link.clone();
                             let id = product.id;
-                            move |_| link.push(&Route::ProductPage { id })
+                            move |_| link.push(&Route::ProductPageView { id })
                         })}>
                             {"View Product"}
                         </button>
@@ -156,7 +157,7 @@ fn app() -> Html {
 fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html! { <Home /> },
-        Route::ProductPage { id } => html! { <ProductPage id={id} /> },
+        Route::ProductPageView { id } => html! { <ProductPage id={id} /> },
     }
 }
 
