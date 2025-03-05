@@ -30,7 +30,7 @@ pub fn product_page(props: &ProductPageProps) -> Html {
     html! {
         <div class="flex flex-col items-center justify-start min-h-screen text-white">
             <header class="w-full py-4 bg-gray-800 text-white flex justify-between items-center px-8 fixed top-0 z-50">
-                <h1 class="text-2xl font-bold">{"Product Details"}</h1>
+                <h1 class="text-2xl font-bold">{"Product Page"}</h1>
             </header>
             <div class="relative w-full py-12 flex flex-col items-center mt-16">
                 <img src={product.image_url.clone()} alt={product.name.clone()} class="w-full h-48 object-cover rounded-lg" />
