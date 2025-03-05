@@ -5,27 +5,23 @@
 
 use yew::prelude::*;
 
-
-
-
-struct Product {
+pub struct Product {
     id: u32,
     name: String,
     image_url: String,
     price: String,
 }
 
-
 #[derive(Properties, PartialEq, Clone)]
-struct ProductPageProps {
+pub struct ProductPageProps {
     id: u32,
 }
 
 #[function_component(ProductPage)]
-fn product_page(props: &ProductPageProps) -> Html {
+pub fn product_page(props: &ProductPageProps) -> Html {
     let products = vec![
-        Product { id: 1, name: "Product 1".to_string(),price:"30".to_string() ,image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
-        Product { id: 2, name: "Product 2".to_string(), price:"30".to_string(),image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
+        Product { id: 1, name: "Product 1".to_string(), price: "30".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
+        Product { id: 2, name: "Product 2".to_string(), price: "30".to_string(), image_url: "https://img.freepik.com/free-vector/white-product-podium-with-green-tropical-palm-leaves-golden-round-arch-green-wall_87521-3023.jpg".to_string() },
         // Add more products as needed
     ];
 
