@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+actix-web = "4.9.0"
 web-sys = "0.3.77"
 yew = { version = "0.21", features = ["csr"] }
 yew-router = "0.18.0"
