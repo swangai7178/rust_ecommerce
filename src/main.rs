@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2025 
- * All rights reserved.
- */
+
 
  use std::rc::Rc;
  use std::cell::RefCell;
