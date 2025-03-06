@@ -7,8 +7,6 @@
  
  
  mod productview;
-
- 
  #[derive(Clone, PartialEq)]
  struct Cart {
      items: Rc<RefCell<Vec<String>>>,
